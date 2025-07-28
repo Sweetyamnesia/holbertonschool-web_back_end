@@ -8,7 +8,7 @@ of a given floating-point number.
 import math
 
 
-def floor(n: float) -> float:
+def floor(n: float) -> int:
     """
     Returns the largest integer less than or equal
     to the given floating-point number.
