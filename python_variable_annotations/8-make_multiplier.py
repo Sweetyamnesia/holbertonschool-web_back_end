@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """
-This modules contains functions which takes float multiplier as argument
+This module provides a function that generates a
+multiplier function for floats.
 """
 
 
 def make_multiplier(multiplier: float) -> float:
     """
+    Creates a multiplier function.
+
     Parameters:
-    multplier (float) : the principal argument
+    multiplier (float): The number to multiply inputs by.
 
     Returns:
-    The function which multiply the float
+    A function that takes a float and returns it
+    multiplied by the given multiplier.
     """
     return float(multiplier)
