@@ -5,7 +5,7 @@ that computes the sum of a list of floating-point numbers.
 """
 
 
-def sum_list(input_list: float) -> float:
+def sum_list(input_list: list [float]) -> float:
     """
     Computes the sum of all the floating-point numbers in the input list.
 
