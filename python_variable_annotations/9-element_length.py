@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """
-This modules contains duck type with iterable objects
+This module demonstrates duck typing by using an iterable of elements
+and returning a list of tuples with each element and its length.
 """
 
+from typing import Iterable, List
 
-def element_length(lst) -> list:
+def element_length(lst : Iterable) -> List:
     """
     Parameters:
-    lst: the list
+    lst (Iterable): An iterable containing elements
+    that support the len() function.
 
     Returns:
-    the length of the list
+    A list of tuples where each tuple contains an element 
+    and its length.
     """
     return [(i, len(i)) for i in lst]
