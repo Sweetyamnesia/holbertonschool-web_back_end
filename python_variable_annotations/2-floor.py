@@ -4,6 +4,12 @@ This module contains function which takes float as argument
 """
 
 
+import math
+"""
+importation of math module
+"""
+
+
 def floor(n: float) -> float:
     """
     Parameters:
@@ -12,4 +18,4 @@ def floor(n: float) -> float:
     Returns:
     the floor of the float
     """
-    return n
+    return math.floor(n)
