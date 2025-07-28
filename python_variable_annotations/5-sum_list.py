@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
-This modules contains a list of floats.
+This modules provides a function
+that computes the sum of a list of floating-point numbers.
 """
 
 
 def sum_list(input_list: float) -> float:
     """
+    Computes the sum of all the floating-point numbers in the input list.
+
     Parameters:
-    input_list (float): list of floats
+    input_list (List[float]): A list of floating-point numbers.
 
     Returns:
-    Sum of the float.
+    float: The sum of all numbers in the list.
     """
-    return input_list
+    return sum(input_list)
