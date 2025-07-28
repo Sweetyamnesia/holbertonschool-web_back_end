@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 """
-This module contains function which take string, int
-or float as arguments
+This module provides a function that takes a string and a number
+(int or float), and returns a tuple containing the string
+and the square of the number.
 """
 
+from typing import Union
 
-def to_kv(k: str, v: int | float):
+
+def to_kv(k: str, v: Union[int, float]) -> tuple:
     """
+    Returns a tuple where the first element is the input string,
+    and the second element is the square of the numeric input as a float.
+
     Parameters:
-    k (str): a string (first argument)
-    v (int OR float): an int or float (second argument)
+    k (str): A string.
+    v (int or float): A number to be squared.
 
     Returns:
-    tuple of the string k, and square of the float v.
+    tuple[str, float]: A tuple containing the string
+    and the square of the number.
     """
     return tuple
