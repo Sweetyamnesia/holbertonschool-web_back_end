@@ -16,6 +16,7 @@ spec = importlib.util.spec_from_file_location(module_name, module_path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
+
 async def measure_time(n: int, max_delay: int) -> float:
     """
     Measures the total execution time for wait_n(n, max_delay),
