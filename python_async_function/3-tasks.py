@@ -15,8 +15,9 @@ spec = importlib.util.spec_from_file_location(module_name, module_path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
+
 def task_wait_random(max_delay: int) -> asyncio.Task:
-	"""
+    """
     Returns an asyncio Task for the wait_random coroutine.
 
     Parameters:
@@ -25,4 +26,4 @@ def task_wait_random(max_delay: int) -> asyncio.Task:
     Returns:
     asyncio.Task: The task object that can be awaited.
     """
-	return asyncio.create_task(mod.wait_random(max_delay))
+    return asyncio.create_task(mod.wait_random(max_delay))
