@@ -19,10 +19,10 @@ spec.loader.exec_module(mod)
 
 async def async_comprehension() -> List[float]:
     """
-    Collects 10 random integers from the async generator
+    Collects 10 random floats from the async generator
     using async comprehension.
 
     Returns:
-    List[int]: A list of 10 random integers between 0 and 10.
+    List[float]: A list of 10 random floats between 0 and 10.
     """
     return [i async for i in mod.async_generator()]
