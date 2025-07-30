@@ -5,7 +5,7 @@ to collect its values.
 """
 
 import asyncio
-from typing import AsyncGenerator
+from typing import List
 import importlib.util
 
 # Dynamically import the wait_random coroutine from another file
@@ -17,7 +17,7 @@ mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
 
-async def async_comprehension() -> AsyncGenerator[int, None]:
+async def async_comprehension() -> List[float]:
     """
     Collects 10 random integers from the async generator
     using async comprehension.
