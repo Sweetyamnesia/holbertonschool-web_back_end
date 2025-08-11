@@ -24,12 +24,36 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Retrieve a page of data.
+
+        Args:
+        page: The page number to retrieve, must be an integer greater than 0.
+        page_size: The number of items per page, must be an integer greater than 0.
+
+        Returns:
+        A list representing the data for the specified page.
+
+        Raises:
+        AssertionError: If either page or page_size is not an integer or is not greater than 0.
+        """
         self.page = page
         self.page_size = page_size
-        assert int (page) > 0 and int (page_size) > 0
+        assert isinstance(page, int)
+        assert isinstance(page_size, int)
+        assert page and page_size > 0
 
 
     def index_range(page, page_size):
+        """
+        Parameters:
+        page(int) : the current page number
+        page_size(int) : the number of items to display
+
+        Return:
+        Tuple of size, start and end index corresponding to the
+        range of indexes.
+        """
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
         return start_index, end_index
