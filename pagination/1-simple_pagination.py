@@ -41,10 +41,13 @@ class Server:
         self.page_size = page_size
         assert isinstance(page, int)
         assert isinstance(page_size, int)
-        assert page and page_size > 0
-        return list()
+        assert page > 0
+        assert page_size > 0
+        
+        start, end = self.index_range(page, page_size)
+        return self.dataset()[start:end]
 
-
+    @staticmethod
     def index_range(page, page_size):
         """
         Parameters:
