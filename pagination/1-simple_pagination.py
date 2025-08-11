@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Server module for paginating a dataset of popular baby names.
+"""
+
 import csv
 from typing import List
 
