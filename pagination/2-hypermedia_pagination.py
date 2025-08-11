@@ -51,11 +51,14 @@ class Server:
         """
         Return pagination info and dataset page.
         """
+        data = self.get_page(page, page_size)
+        total_items = len(self.dataset())
+        total_pages = (total_items + page_size - 1) // page_size
 
         return {
             "page_size": len(self.dataset()),
             "page": page,
-            "data": self.dataset(),
+            "data": data,
             "next_page": page + 1,
             "prev_page": page - 1,
             "total_pages": total_pages
