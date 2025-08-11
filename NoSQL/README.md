@@ -1,75 +1,114 @@
-# Bases de données NoSQL expliquées
+# Introduction aux bases de données NoSQL
+
+Ce document présente les concepts essentiels autour des bases de données NoSQL, leurs différences avec les bases relationnelles classiques, ainsi qu’une introduction pratique à MongoDB.
+
+---
 
 ## Qu’est-ce que le NoSQL ?
 
-Les bases de données NoSQL (Not Only SQL) sont des bases non relationnelles conçues pour stocker et récupérer des données de manière différente des bases relationnelles traditionnelles. Elles offrent des schémas flexibles, une scalabilité horizontale et sont optimisées pour des modèles de données spécifiques comme les documents, les paires clé-valeur, les graphes ou les colonnes.
+NoSQL signifie "Not Only SQL". C’est une famille de systèmes de gestion de bases de données qui ne reposent pas sur le modèle relationnel traditionnel.  
+Ces bases sont conçues pour gérer des données volumineuses, non structurées ou semi-structurées, et offrir une meilleure scalabilité horizontale.
 
 ---
 
-## Contenu
+## Différences entre SQL et NoSQL
 
-- **Qu’est-ce que NoSQL ?**  
-  Présentation du concept et de l’évolution des bases NoSQL.
-
-- **Différences entre SQL et NoSQL**  
-  Principales différences dans les modèles de données, la scalabilité, la flexibilité des schémas et les cas d’usage.
-
-- **Qu’est-ce que ACID ?**  
-  Explication des principes Atomicité, Cohérence, Isolation, Durabilité dans les bases de données.
-
-- **Qu’est-ce que le stockage par documents ?**  
-  Compréhension des bases orientées documents et de leurs structures de données.
-
-- **Les types de bases NoSQL**  
-  Introduction aux types principaux : documents, clé-valeur, colonnes, graphes.
-
-- **Les avantages d’une base NoSQL**  
-  Pourquoi choisir NoSQL ? Scalabilité, performance, flexibilité, etc.
-
-- **Comment interroger une base NoSQL**  
-  Techniques pour récupérer efficacement des données.
-
-- **Comment insérer, mettre à jour et supprimer des données dans NoSQL**  
-  Opérations CRUD dans un contexte NoSQL.
-
-- **Introduction à MongoDB et Python**  
-  Premiers pas avec MongoDB, une base orientée documents populaire, avec Python.
+| Critère          | SQL                               | NoSQL                                |
+|------------------|----------------------------------|------------------------------------|
+| Modèle de données| Tables relationnelles (lignes, colonnes) | Documents, clé-valeur, colonnes, graphes |
+| Schéma           | Rigide (défini à l’avance)       | Flexible ou sans schéma             |
+| Scalabilité      | Verticale (plus de puissance machine) | Horizontale (ajout de serveurs)   |
+| Requêtes         | Langage SQL standardisé           | Requêtes spécifiques selon type   |
+| Transactions     | Supporte ACID                     | Souvent BASE (plus flexible)       |
 
 ---
 
-## Tutoriel MongoDB avec Python pour débutants
+## Qu’est-ce que ACID ?
 
-Cette série de tutoriels couvre les bases de MongoDB avec Python :
-
-- **MongoDB Tutoriel 1 :** Introduction et installation  
-- **MongoDB Tutoriel 2 :** Insérer, mettre à jour, supprimer et interroger des documents  
-- **Agrégation dans MongoDB**  
-- **Utilisation du shell mongo**  
-- **Méthodes courantes du shell mongo**
+ACID est un ensemble de propriétés garantissant la fiabilité des transactions dans une base de données relationnelle :  
+- **Atomicité** : La transaction est tout ou rien.  
+- **Cohérence** : La base reste dans un état valide avant et après la transaction.  
+- **Isolation** : Les transactions concurrentes ne se gênent pas.  
+- **Durabilité** : Une fois validée, la transaction est conservée même en cas de panne.
 
 ---
 
-## Démarrer avec MongoDB et Python
+## Qu’est-ce que le stockage par documents ?
 
-Apprenez à :
-
-- Se connecter à MongoDB depuis Python  
-- Effectuer des opérations CRUD  
-- Utiliser les pipelines d’agrégation  
-- Travailler avec le shell mongo pour gérer la base
+Le stockage par documents est un type de base NoSQL où les données sont stockées sous forme de documents (généralement JSON ou BSON).  
+Chaque document contient des paires clé-valeur pouvant représenter des structures complexes, sans schéma fixe.
 
 ---
 
-## Pourquoi apprendre NoSQL ?
+## Types de bases NoSQL
 
-Les bases NoSQL sont essentielles dans les applications modernes grâce à leur capacité à gérer de grands volumes de données non structurées ou semi-structurées, leur haute disponibilité et leur flexibilité, que les bases relationnelles traditionnelles ne proposent pas toujours.
+1. **Bases clé-valeur** : Stockage simple d’associations clé → valeur (ex: Redis).  
+2. **Bases documentaires** : Documents flexibles (ex: MongoDB, CouchDB).  
+3. **Bases en colonnes** : Stockage optimisé par colonnes (ex: Cassandra).  
+4. **Bases graphe** : Données liées avec des relations complexes (ex: Neo4j).
+
+---
+
+## Avantages des bases NoSQL
+
+- **Scalabilité horizontale** pour gérer des millions de requêtes.  
+- **Flexibilité** du schéma permettant d’évoluer rapidement.  
+- **Performance** accrue pour certains types de données et requêtes.  
+- **Adaptées aux données semi-structurées** comme les logs, réseaux sociaux, IoT.
 
 ---
 
-## Ressources
+## Comment interroger une base NoSQL ?
 
-- Documentation officielle de MongoDB  
-- Documentation du pilote Python pour MongoDB (PyMongo)  
-- Tutoriels et guides NoSQL
+Les bases NoSQL ont souvent leur propre langage ou API pour récupérer des données, souvent en JSON.  
+Par exemple, MongoDB utilise des requêtes en JSON pour filtrer, trier, ou agréger les documents.
 
 ---
+
+## Comment insérer, mettre à jour et supprimer dans NoSQL ?
+
+Les opérations CRUD (Create, Read, Update, Delete) sont réalisées via des commandes spécifiques au type de base :  
+- **Insertion** : ajouter un nouveau document ou paire clé-valeur.  
+- **Mise à jour** : modifier un ou plusieurs champs d’un document.  
+- **Suppression** : retirer un document selon un critère.
+
+---
+
+## Introduction à MongoDB
+
+MongoDB est une base NoSQL orientée documents très populaire.  
+Elle stocke les données sous forme de documents BSON, permettant des structures imbriquées complexes.  
+MongoDB propose :  
+- Un shell interactif (`mongo`) pour manipuler la base.  
+- Un pilote Python (`pymongo`) pour intégrer MongoDB dans vos applications.
+
+---
+
+## Utiliser MongoDB avec Python
+
+- Installer `pymongo` :  
+```bash
+pip install pymongo
+```
+- Connexion à la base :
+```python
+from pymongo import MongoClient
+client = MongoClient('mongodb://localhost:27017/')
+db = client['ma_base']
+collection = db['ma_collection']
+````
+
+- Opérations courantes :
+```python
+# Insérer un document
+collection.insert_one({"nom": "Alice", "âge": 30})
+
+# Rechercher des documents
+resultats = collection.find({"âge": {"$gt": 25}})
+
+# Mettre à jour un document
+collection.update_one({"nom": "Alice"}, {"$set": {"âge": 31}})
+
+# Supprimer un document
+collection.delete_one({"nom": "Alice"})
+````
