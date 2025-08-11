@@ -29,13 +29,15 @@ class Server:
 
         Args:
         page: The page number to retrieve, must be an integer greater than 0.
-        page_size: The number of items per page, must be an integer greater than 0.
+        page_size: The number of items per page, must be an integer
+        greater than 0.
 
         Returns:
         A list representing the data for the specified page.
 
         Raises:
-        AssertionError: If either page or page_size is not an integer or is not greater than 0.
+        AssertionError: If either page or page_size is not an integer
+        or is not greater than 0.
         """
         self.page = page
         self.page_size = page_size
@@ -43,7 +45,7 @@ class Server:
         assert isinstance(page_size, int)
         assert page > 0
         assert page_size > 0
-        
+
         start, end = self.index_range(page, page_size)
         return self.dataset()[start:end]
 
