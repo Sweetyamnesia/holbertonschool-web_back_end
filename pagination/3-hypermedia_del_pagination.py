@@ -41,24 +41,23 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Return a page of the dataset starting at a specific
-        index with hypermedia pagination metadata.
+        Return a page of the dataset starting at a specific index
+        with hypermedia pagination metadata.
 
         Args:
         index (int): The starting index of the dataset page (0-indexed).
         page_size (int): The number of items to include in the page.
 
         Returns:
-        Dict: A dictionary containing the following key-value pairs:
-            - page_size(int): The number of items returned in the current page.
+        Dict: A dictionary containing:
             - index (int): The current start index of the page.
+            - next_index (int): The starting index of the next page.
+            - page_size (int): The number of items requested for the page.
             - data (List[List]): The list of dataset rows for the current page.
-            - next_index (int or None): The starting index of the next page,
-            or None if no next page exists.
-            - prev_index (int or None): The starting index of the previous page
-            or None if no previous page exists.
-            - total_items (int): The total number of items in the dataset.
         """
+        assert 0 <= index
+        dataset = self.dataset()
+        data = dataset[index:index + page_size]
         return {
             "index": index,
             "next_index": index + 1,
