@@ -12,7 +12,7 @@ class Server:
     def __init__(self):
         self.__dataset = None
 
-    def dataset(self) -> List[List[str]]:
+    def dataset(self) -> List[List]:
         """Cached dataset
         """
         if self.__dataset is None:
@@ -26,18 +26,6 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List[str]]:
         """
         Retrieve a page of data.
-
-        Args:
-        page: The page number to retrieve, must be an integer greater than 0.
-        page_size: The number of items per page, must be an integer
-        greater than 0.
-
-        Returns:
-        A list representing the data for the specified page.
-
-        Raises:
-        AssertionError: If either page or page_size is not an integer
-        or is not greater than 0.
         """
         assert isinstance(page, int)
         assert isinstance(page_size, int)
@@ -50,12 +38,7 @@ class Server:
     @staticmethod
     def index_range(page, page_size) -> tuple[int, int]:
         """
-        Parameters:
-        page (int): current page number (1-indexed)
-        page_size (int): number of items per page
-
-        Returns:
-        Tuple[int, int]: start index (inclusive), end index (exclusive)
+        Return start and end indexes for pagination.
         """
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
