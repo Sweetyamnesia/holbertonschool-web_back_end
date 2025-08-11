@@ -42,6 +42,7 @@ class Server:
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page and page_size > 0
+        return list()
 
 
     def index_range(page, page_size):
