@@ -1,3 +1,5 @@
+//Create a database
+
 IF DB_ID('my_db') IS NULL
     CREATE DATABASE my_db;
 GO
