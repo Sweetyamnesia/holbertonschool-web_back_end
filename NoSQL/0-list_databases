@@ -1,1 +1,6 @@
+from pymongo import MongoClient
+client = MongoClient('mongodb://localhost:27017/')
+db = client['ma_base']
+collection = db['ma_collection']
+
 print(db.adminCommand({listDatabases: 1}))
