@@ -1,8 +1,2 @@
-//Create a database
-
-IF DB_ID('my_db') IS NULL
-    CREATE DATABASE my_db;
-GO
-
-USE my_db;
-GO
+// Switch to the database named "my_db"
+use my_db
