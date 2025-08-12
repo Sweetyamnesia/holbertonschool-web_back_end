@@ -1,18 +1,1 @@
-from pymongo import MongoClient
-"""
-Python script to list MongoDB databases
-with PyMongo.
-"""
-
-
-def list_databases():
-    """
-    Return list of databases
-    """
-    client = MongoClient('mongodb://localhost:27017/')
-    return client.admin.command("listDatabases")
-
-
-if __name__ == "__main__":
-    result = list_databases()
-    print(result)
+show dbs
