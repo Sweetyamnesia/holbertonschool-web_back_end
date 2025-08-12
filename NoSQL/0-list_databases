@@ -1,6 +1,15 @@
 from pymongo import MongoClient
-client = MongoClient('mongodb://localhost:27017/')
-db = client['ma_base']
-collection = db['ma_collection']
+“”"
+Python script to list MongoDB databases
+with PyMongo.
+“”"
 
-print(db.adminCommand({listDatabases: 1}))
+
+def list_databases():
+    client = MongoClient('mongodb://localhost:27017/')
+    return client.admin.command("listDatabases")
+
+
+if __name__ == "__main__":
+    result = list_databases()
+    print(result)
