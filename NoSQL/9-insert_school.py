@@ -13,7 +13,16 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")
 
 def insert_school(mongo_collection, **kwargs):
     """
-    
-    """
-    documents = list(mongo_collection.find({}))
+    Inserts a new document into a MongoDB collection
+    using the provided keyword arguments.
 
+    Args:
+        mongo_collection: A PyMongo collection object.
+        **kwargs: Keyword arguments representing the fields
+        and values for the new document.
+
+    Returns:
+        The _id of the newly inserted document.
+    """
+    result = mongo_collection.insert_one(kwargs)
+    return result.inserted_id
