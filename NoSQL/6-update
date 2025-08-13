@@ -1,9 +1,5 @@
 // script that adds a new attribute to a document in the collection school
 db.school.updateMany(
   { name: "Holberton school" },
-  { $unset: { address: "" } }  // supprime le champ address s'il existe déjà
-)
-db.school.updateMany(
-  { name: "Holberton school" },
-  { $set: { address: "972 Mission street" } }  // remet le champ avec la bonne valeur
+  { $set: { address: "972 Mission street" } }
 )
