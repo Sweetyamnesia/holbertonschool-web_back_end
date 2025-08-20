@@ -25,7 +25,7 @@ export default class HolbertonCourse {
   }
 
   set length(newLength) {
-    if (typeof newLength !== 'number' || newLength < 0) {
+    if (typeof newLength !== 'number') {
       throw new TypeError('Length must be a number');
     }
     this._length = newLength;
