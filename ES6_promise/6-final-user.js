@@ -8,11 +8,13 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
 	return Promise
 	  .allSettled([promise1, promise2])
 	  .then((results) => {
-		const userResult = results[0];
-		const photoResult = results[1];
-
-		if (userResult.status === 'fulfilled' && photoResult === 'fulfilled') {
-          console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
-		}
+		const processedResults = results.map(result => {
+        if (result.status === 'fulfilled') {
+          return result.value;
+        } else {
+          return null;
+        }
+      });
+      return processedResults;
 	});
 }
