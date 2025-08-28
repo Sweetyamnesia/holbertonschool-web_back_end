@@ -7,10 +7,15 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
 
 	return Promise
 	  .allSettled([promise1, promise2])
-	  .then(([user, photo]) => {
-		console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
-	   })
-	    .catch(() => {
-			console.log("Signup system offline");
-		});
+	  .then((results) => {
+		const userResult = results[0];
+		const photoResult = results[1];
+
+		if (userResult.status === 'fulfilled' && photoResult === 'fulfilled') {
+          console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
+		} else {
+          console.log("Signup system offline");
+		}
+		
+	});
 }
