@@ -13,9 +13,6 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
 
 		if (userResult.status === 'fulfilled' && photoResult === 'fulfilled') {
           console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
-		} else {
-          console.log("Signup system offline");
 		}
-		
 	});
 }
