@@ -1,5 +1,6 @@
+const fs = require('fs').promises;
+
 function countStudents(path) {
-	const fs = require('fs').promises;
 	fs.readFile(path, 'utf8')
 	.then(data => {
 		console.log(`Number of students in FIELD: 6. List: ${LIST_OF_FIRSTNAMES}`, data);
