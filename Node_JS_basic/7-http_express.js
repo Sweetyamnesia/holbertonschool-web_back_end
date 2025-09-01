@@ -10,15 +10,15 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
 	res.write(`This is the list of our students\n`);
-});
 
-countStudents(database)
-    .then(output => {
-      res.end(output);
-    })
-    .catch(() => {
-      res.end('Cannot load the database\n');
+	countStudents(database)
+		.then(output => {
+		res.end(output);
+		})
+		.catch(() => {
+		res.end('Cannot load the database\n');
     });
+});
 
 app.listen(1245, () => {
   console.log('Serveur Express démarré sur http://localhost:1245');
