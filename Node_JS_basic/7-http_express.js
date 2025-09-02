@@ -7,19 +7,20 @@ const countStudents = require('./3-read_file_async');
 const database = process.argv[2];
 
 app.get('/', (req, res) => {
-  res.send('Hello Holberton School!');
+	res.type('text/plain');
+    res.send('Hello Holberton School!');
 });
 
-app.get('/students', (req, res) => {
-  res.write('This is the list of our students\n');
+app.get('/students', async (req, res) => {
+	res.type('text/plain');
+    res.write('This is the list of our students');
 
-  countStudents(database)
-    .then((output) => {
-      res.end(output);
-    })
-    .catch(() => {
-      res.end('Cannot load the database\n');
-    });
+  try {
+    const studentsList = await countStudents(database);
+    res.end(studentsList);
+  } catch {
+    res.end('Cannot load the database');
+  }
 });
 
 module.exports = app;
