@@ -13,14 +13,16 @@ app.get('/', (req, res) => {
 
 app.get('/students', async (req, res) => {
 	res.type('text/plain');
-    res.write('This is the list of our students');
+    res.send('This is the list of our students\n');
 
   try {
     const studentsList = await countStudents(database);
-    res.end(studentsList);
+    res.send(`This is the list of our students\n${studentsList || ''}`);
   } catch {
     res.end('Cannot load the database');
   }
 });
+
+app.listen(1245);
 
 module.exports = app;
