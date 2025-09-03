@@ -12,13 +12,18 @@ const app = http.createServer((req, res) => {
   }
 
   if (req.url === '/students') {
-    res.write('This is the list of our students\n');
+    let output = 'This is the list of our students\n';
+
+    const originalLog = console.log;
+    console.log = (msg) => { output += msg + '\n'; };
 
     countStudents(database)
-      .then((studentsList) => {
-        res.end(studentsList);
+      .then(() => {
+        console.log = originalLog;
+        res.end(output.trim());
       })
       .catch(() => {
+        console.log = originalLog;
         res.end('Cannot load the database');
       });
 
