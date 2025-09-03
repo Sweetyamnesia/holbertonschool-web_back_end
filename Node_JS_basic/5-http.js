@@ -4,11 +4,14 @@ const countStudents = require('./3-read_file_async');
 const database = process.argv[2];
 
 const app = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
-  } else if (req.url === '/students') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    return;
+  }
+
+  if (req.url === '/students') {
     res.write('This is the list of our students\n');
 
     countStudents(database)
@@ -18,10 +21,12 @@ const app = http.createServer((req, res) => {
       .catch(() => {
         res.end('Cannot load the database');
       });
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
+
+    return;
   }
+
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.end('Not Found');
 });
 
 app.listen(1245);
