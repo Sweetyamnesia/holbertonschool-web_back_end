@@ -12,7 +12,7 @@ const app = http.createServer((req, res) => {
   }
 
   if (req.url === '/students') {
-    let output = 'This is the list of our students\n';
+    let output = `This is the list of our students\n${studentsList}`;
 
     const originalLog = console.log;
     console.log = (msg) => { output += `${msg}\n`; };
