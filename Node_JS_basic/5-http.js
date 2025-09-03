@@ -15,7 +15,7 @@ const app = http.createServer((req, res) => {
     let output = 'This is the list of our students\n';
 
     const originalLog = console.log;
-    console.log = (msg) => { output += msg + '\n'; };
+    console.log = (msg) => { output += `$msg + '\n'`; };
 
     countStudents(database)
       .then(() => {
