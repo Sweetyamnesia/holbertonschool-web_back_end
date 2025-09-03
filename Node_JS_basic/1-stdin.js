@@ -8,11 +8,11 @@ process.stdin.on('data', (data) => {
 	console.log(`Your name is: ${name}`);
 });
 
-process.stdin.on('end', () => {
+process.stdin.on('close', () => {
     console.log('This important software is now closing');
 });
 
 process.on('SIGINT', () => {
     console.log('This important software is now closing');
-    process.exit();
+    process.exit(0);
 });
