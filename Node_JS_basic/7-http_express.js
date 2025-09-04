@@ -32,12 +32,12 @@ async function countStudents(databasePath) {
       }
     });
 
-    let output = `Number of students: ${students.length}\n`;
-    Object.keys(fields).sort().forEach((field) => {
-      output += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
+    let output = `Number of students: ${students.length}`;
+    Object.keys(fields).forEach((field) => {
+      output += `\nNumber of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`;
     });
 
-    return output.trim();
+    return output;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
@@ -50,14 +50,11 @@ app.get('/', (req, res) => {
 
 app.get('/students', async (req, res) => {
   res.type('text/plain');
-  let output = 'This is the list of our students\n';
-
   try {
     const studentsData = await countStudents(database);
-    output += studentsData;
-    res.send(output);
+    res.send(`This is the list of our students\n${studentsData}`);
   } catch (err) {
-    res.send('Cannot load the database');
+    res.send('This is the list of our students\nCannot load the database');
   }
 });
 
