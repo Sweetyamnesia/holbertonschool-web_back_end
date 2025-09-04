@@ -1,47 +1,46 @@
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs/promises');
 
 const app = express();
 const database = process.argv[2];
 
 async function countStudents(databasePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(databasePath, 'utf8', (err, data) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-        return;
-      }
+  try {
+    const data = await fs.readFile(databasePath, 'utf8');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
 
-      const lines = data.split('\n').filter((line) => line.trim() !== '');
-      const headers = lines[0].split(',');
-      const students = lines.slice(1).map((line) => {
-        const values = line.split(',');
-        const student = {};
-        headers.forEach((header, index) => {
-          student[header.trim()] = values[index].trim();
-        });
-        return student;
+    if (lines.length <= 1) {
+      return 'Number of students: 0';
+    }
+
+    const headers = lines[0].split(',');
+    const students = lines.slice(1).map((line) => {
+      const values = line.split(',');
+      const student = {};
+      headers.forEach((header, index) => {
+        student[header.trim()] = values[index].trim();
       });
-
-      const fields = {};
-      students.forEach((student) => {
-        const { field } = student;
-        if (field) {
-          if (!fields[field]) fields[field] = [];
-          fields[field].push(student.firstname);
-        }
-      });
-
-      let output = `Number of students: ${students.length}\n`;
-      for (const field in fields) {
-        if (Object.prototype.hasOwnProperty.call(fields, field)) {
-          output += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
-        }
-      }
-
-      resolve(output.trim());
+      return student;
     });
-  });
+
+    const fields = {};
+    students.forEach((student) => {
+      const { field } = student;
+      if (field) {
+        if (!fields[field]) fields[field] = [];
+        fields[field].push(student.firstname);
+      }
+    });
+
+    let output = `Number of students: ${students.length}\n`;
+    Object.keys(fields).sort().forEach((field) => {
+      output += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
+    });
+
+    return output.trim();
+  } catch (error) {
+    throw new Error('Cannot load the database');
+  }
 }
 
 app.get('/', (req, res) => {
@@ -52,11 +51,6 @@ app.get('/', (req, res) => {
 app.get('/students', async (req, res) => {
   res.type('text/plain');
   let output = 'This is the list of our students\n';
-
-  if (!database) {
-    res.send(`${output} + 'Database not provided`);
-    return;
-  }
 
   try {
     const studentsData = await countStudents(database);
