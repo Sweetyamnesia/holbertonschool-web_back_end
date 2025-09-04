@@ -1,5 +1,5 @@
 const express = require('express');
-const {readFile} = require('fs/promises');
+const { readFile } = require('fs/promises');
 
 const app = express();
 const database = process.argv[2];
