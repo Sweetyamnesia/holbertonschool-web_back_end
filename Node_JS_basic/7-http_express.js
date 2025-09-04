@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 const database = process.argv[2];
 
-function countStudents(databasePath) {
+async function countStudents(databasePath) {
   return new Promise((resolve, reject) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {
       if (err) {
