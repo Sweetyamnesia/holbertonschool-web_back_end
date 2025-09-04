@@ -1,12 +1,12 @@
 const express = require('express');
-const fs = require('fs/promises');
+const {readFile} = require('fs/promises');
 
 const app = express();
 const database = process.argv[2];
 
 async function countStudents(databasePath) {
   try {
-    const data = await fs.readFile(databasePath, 'utf8');
+    const data = await readFile(databasePath, 'utf8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     if (lines.length <= 1) {
